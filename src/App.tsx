@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import LandingPage from "./pages/LandingPage";
+import SigninPage from "./pages/SigninPage";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/signin" element={<SigninPage />} />
       </Routes>
     </>
   );
@@ -19,15 +21,10 @@ export default function App() {
 const GlobalStyle = createGlobalStyle`
 ${reset}
 
-@font-face {
-    font-family: 'KyoboHandwriting2020A';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/KyoboHandwriting2020A.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 
 body {
-  font-family: 'KyoboHandwriting2020A';
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 ::-webkit-scrollbar {

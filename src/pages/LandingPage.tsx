@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Template from "../components/common/Template";
+import useScrollFadeIn from "../hooks/useScrollFadeIn";
 
 import backgroundImage from "../styles/images/background.jpg";
 
@@ -12,7 +13,9 @@ export default function LandingPage() {
           <h1>메인 페이지</h1>
         </FirstSection>
 
-        <SecondSection></SecondSection>
+        <SecondSection
+          {...useScrollFadeIn({ delay: 0.3, duration: 1 })}
+        ></SecondSection>
 
         <SecondSection></SecondSection>
 
