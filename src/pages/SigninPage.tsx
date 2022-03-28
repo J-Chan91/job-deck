@@ -32,7 +32,7 @@ export default function SigninPage() {
 }
 
 const SigninPageContainer = styled.main`
-  width: 25vw;
+  width: 500px;
   height: 35vh;
   position: absolute;
   top: 50%;
@@ -56,7 +56,7 @@ const NaverSigninButton = styled.button`
   font-weight: 800;
   color: #fff;
   background-color: #03c75a;
-  width: 15vw;
+  width: 300px;
   height: 60px;
   border: none;
   margin: 0 auto;
@@ -69,6 +69,10 @@ const NaverSigninButton = styled.button`
     cursor: pointer;
   }
 
+  &:hover {
+    background-color: #fff;
+  }
+
   & span {
     font-weight: 900;
   }
@@ -79,7 +83,7 @@ const KakaoSigninButton = styled.button`
   font-weight: 800;
   color: #000;
   background-color: #fee500;
-  width: 15vw;
+  width: 300px;
   height: 60px;
   border: none;
   margin: 0 auto;
@@ -104,7 +108,7 @@ const GoogleSigninButton = styled.button`
   color: #848484;
   background-color: #fff;
   border: 1px solid #999;
-  width: 15vw;
+  width: 300px;
   height: 60px;
   border-radius: 10px;
   margin: 0 auto;
