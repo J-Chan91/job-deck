@@ -13,9 +13,9 @@ export default function LandingPage() {
           <h1>메인 페이지</h1>
         </FirstSection>
 
-        <SecondSection
-          {...useScrollFadeIn({ delay: 0.3, duration: 1 })}
-        ></SecondSection>
+        <SecondSection {...useScrollFadeIn({ delay: 0.3, duration: 1 })}>
+          <button>부고장 만들기</button>
+        </SecondSection>
 
         <SecondSection></SecondSection>
 

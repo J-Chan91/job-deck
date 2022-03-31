@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
+import Footer from "./Footer";
 import NaviBar from "./NaviBar";
 
 interface TemplateProps {
@@ -12,6 +13,8 @@ export default function Template({ children }: TemplateProps) {
       <NaviBar />
 
       {children}
+
+      <Footer />
     </Container>
   );
 }

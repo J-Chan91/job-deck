@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import Template from "../components/common/Template";
 
@@ -10,28 +9,36 @@ export default function SigninPage() {
   return (
     <Template>
       <SigninPageContainer>
-        <h1>로그인</h1>
+        <SigninBtnsWrapper>
+          <h1>로그인</h1>
 
-        <NaverSigninButton>
-          <img src={naver} width={35} alt="kakao" />
-          네이버 로그인
-        </NaverSigninButton>
+          <NaverSigninButton>
+            <img src={naver} width={35} alt="kakao" />
+            네이버 로그인
+          </NaverSigninButton>
 
-        <KakaoSigninButton>
-          <img src={kakao} width={30} alt="kakao" />
-          카카오 로그인
-        </KakaoSigninButton>
+          <KakaoSigninButton>
+            <img src={kakao} width={30} alt="kakao" />
+            카카오 로그인
+          </KakaoSigninButton>
 
-        <GoogleSigninButton>
-          <img src={google} width={30} alt="google" />
-          구글 로그인
-        </GoogleSigninButton>
+          <GoogleSigninButton>
+            <img src={google} width={30} alt="google" />
+            구글 로그인
+          </GoogleSigninButton>
+        </SigninBtnsWrapper>
       </SigninPageContainer>
     </Template>
   );
 }
 
 const SigninPageContainer = styled.main`
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+`;
+
+const SigninBtnsWrapper = styled.section`
   width: 25vw;
   height: 35vh;
   position: absolute;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BsFlower1 } from "react-icons/bs";
 import styled from "styled-components";
 
 export default function NaviBar() {
@@ -24,7 +25,9 @@ export default function NaviBar() {
 
   return (
     <NavContainer>
-      <LogoTitle onClick={() => handleMovePage("/")}>R.I.P</LogoTitle>
+      <LogoTitle onClick={() => handleMovePage("/")}>
+        <BsFlower1 />
+      </LogoTitle>
 
       <GNBListBox>
         {gnbList.map((item) => (
@@ -54,11 +57,27 @@ const NavContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
+  z-index: 999;
 `;
 
 const LogoTitle = styled.span`
-  padding: 5px 0;
-  font-size: 25px;
+  font-family: consolas;
+  padding: 1rem;
+  font-size: 55px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    animation: spin 15000ms infinite linear;
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
 `;
 
 const GNBListBox = styled.ul`
