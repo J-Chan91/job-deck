@@ -6,14 +6,14 @@ export default function Footer() {
     <FooterContainer>
       <DeveloperContainer>
         <a href="https://github.com/Yadon079" rel="noreferrer" target="_blank">
-          <BsGithub size="40" style={{ cursor: "pointer" }} />
+          <BsGithub size="20" style={{ cursor: "pointer" }} />
         </a>
         <p>B. 한선우</p>
       </DeveloperContainer>
 
       <DeveloperContainer>
         <a href="https://github.com/J-Chan91" rel="noreferrer" target="_blank">
-          <BsGithub size="40" style={{ cursor: "pointer" }} />
+          <BsGithub size="20" style={{ cursor: "pointer" }} />
         </a>
         <p>F. 박종찬</p>
       </DeveloperContainer>
@@ -44,6 +44,7 @@ const DeveloperContainer = styled.article`
   align-items: center;
 
   & p {
+    font-size: 0.8rem;
     margin-left: 1rem;
     color: #999;
   }

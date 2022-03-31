@@ -70,7 +70,7 @@ const LogoTitle = styled.span`
   align-items: center;
 
   & svg {
-    animation: spin 15000ms infinite linear;
+    animation: spin 30000ms infinite linear;
 
     @keyframes spin {
       100% {

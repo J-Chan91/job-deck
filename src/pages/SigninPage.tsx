@@ -63,8 +63,8 @@ const NaverSigninButton = styled.button`
   font-weight: 800;
   color: #fff;
   background-color: #03c75a;
-  width: 300px;
-  height: 60px;
+  width: 20vw;
+  height: 50px;
   border: none;
   margin: 0 auto;
   border-radius: 10px;
@@ -74,10 +74,6 @@ const NaverSigninButton = styled.button`
 
   & {
     cursor: pointer;
-  }
-
-  &:hover {
-    background-color: #fff;
   }
 
   & span {
@@ -90,8 +86,8 @@ const KakaoSigninButton = styled.button`
   font-weight: 800;
   color: #000;
   background-color: #fee500;
-  width: 300px;
-  height: 60px;
+  width: 20vw;
+  height: 50px;
   border: none;
   margin: 0 auto;
   border-radius: 10px;
@@ -115,8 +111,8 @@ const GoogleSigninButton = styled.button`
   color: #848484;
   background-color: #fff;
   border: 1px solid #999;
-  width: 300px;
-  height: 60px;
+  width: 20vw;
+  height: 50px;
   border-radius: 10px;
   margin: 0 auto;
 
