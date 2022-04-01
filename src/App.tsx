@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import LandingPage from "./pages/LandingPage";
-import MakeObituary from "./pages/MakeObituary";
+import MakeObituaryPage from "./pages/MakeObituaryPage";
 import SigninPage from "./pages/SigninPage";
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signin" element={<SigninPage />} />
-        <Route path="/make/obituary" element={<MakeObituary />} />
+        <Route path="/make/obituary" element={<MakeObituaryPage />} />
       </Routes>
     </>
   );
