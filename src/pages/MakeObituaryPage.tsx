@@ -2,9 +2,16 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Template from "../components/common/Template";
 import DeceasedSection from "../components/makeObituary/DeceasedSection";
+import ResidencySection from "../components/makeObituary/ResidencySection";
+import { MakeObituaryInterface } from "../types/MakeObituary";
 
 export default function MakeObituaryPage() {
-  const [clickGender, setClickGender] = useState<string>("");
+  const [deceaseInfo, setDeceaseInfo] = useState<MakeObituaryInterface>({
+    deceasedName: "",
+    deceasedAge: "",
+    deceasedGender: "",
+  });
+  const [residencyInfo, setResidencyInfo] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -12,19 +19,30 @@ export default function MakeObituaryPage() {
 
   return (
     <Template>
+      <PageTitle>부고장 작성</PageTitle>
+
       <MakeObituaryContainer>
         <IptSection>
-          <h1>부고장 작성하기</h1>
-
           <DeceasedSection
-            clickGender={clickGender}
-            setClickGender={setClickGender}
+            deceaseInfo={deceaseInfo}
+            setDeceaseInfo={setDeceaseInfo}
           />
+        </IptSection>
+
+        <IptSection>
+          <ResidencySection />
         </IptSection>
       </MakeObituaryContainer>
     </Template>
   );
 }
+
+const PageTitle = styled.h1`
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 1rem auto;
+`;
 
 const MakeObituaryContainer = styled.main`
   background-color: #fff;
@@ -37,13 +55,7 @@ const IptSection = styled.section`
   border-radius: 0.3rem;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
   width: 75vw;
-  margin: 0 auto;
-
-  & h1 {
-    text-align: center;
-    font-size: 1.5rem;
-    padding: 1rem;
-  }
+  margin: 1rem auto;
 
   & input[type="radio"] {
     display: none;

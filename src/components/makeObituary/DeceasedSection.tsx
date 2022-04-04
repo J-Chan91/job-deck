@@ -1,26 +1,41 @@
 import styled from "styled-components";
+import { MakeObituaryInterface } from "../../types/MakeObituary";
 
 interface DeceasedSectionProps {
-  clickGender: string;
-  setClickGender: React.Dispatch<React.SetStateAction<string>>;
+  deceaseInfo: MakeObituaryInterface;
+  setDeceaseInfo: React.Dispatch<React.SetStateAction<MakeObituaryInterface>>;
 }
 
 export default function DeceasedSection({
-  clickGender,
-  setClickGender,
+  deceaseInfo,
+  setDeceaseInfo,
 }: DeceasedSectionProps) {
+  const handleChangeDeceaseInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.name);
+  };
+
   return (
     <DeceasedArticle>
       <h3>고인 정보</h3>
 
       <IptWrapper>
         <div>성함</div>
-        <input id="deceased-name" type="text" />
+        <input
+          id="deceased-name"
+          name="deceasedName"
+          type="text"
+          onChange={handleChangeDeceaseInfo}
+        />
       </IptWrapper>
 
       <IptWrapper>
         <span>나이</span>
-        <input id="deceased-age" type="text" />
+        <input
+          id="deceased-age"
+          name="deceasedAge"
+          type="text"
+          onChange={handleChangeDeceaseInfo}
+        />
       </IptWrapper>
 
       <IptWrapper>
@@ -28,7 +43,10 @@ export default function DeceasedSection({
 
         <GenderLabel
           htmlFor="gender-man"
-          style={{ backgroundColor: clickGender === "man" ? "#999" : "#fff" }}
+          style={{
+            backgroundColor:
+              deceaseInfo.deceasedGender === "man" ? "#999" : "#fff",
+          }}
         >
           남자
         </GenderLabel>
@@ -36,12 +54,15 @@ export default function DeceasedSection({
           type="radio"
           name="gender-select"
           id="gender-man"
-          onClick={() => setClickGender("man")}
+          onClick={() =>
+            setDeceaseInfo({ ...deceaseInfo, deceasedGender: "man" })
+          }
         />
         <GenderLabel
           htmlFor="gender-women"
           style={{
-            backgroundColor: clickGender === "women" ? "#999" : "#fff",
+            backgroundColor:
+              deceaseInfo.deceasedGender === "women" ? "#999" : "#fff",
           }}
         >
           여자
@@ -50,7 +71,9 @@ export default function DeceasedSection({
           type="radio"
           name="gender-select"
           id="gender-women"
-          onClick={() => setClickGender("women")}
+          onClick={() =>
+            setDeceaseInfo({ ...deceaseInfo, deceasedGender: "women" })
+          }
         />
       </IptWrapper>
     </DeceasedArticle>
