@@ -3,3 +3,8 @@ export interface MakeObituaryInterface {
   deceasedAge: string;
   deceasedGender: string;
 }
+
+export interface ResidencyInterface {
+  regidencyType: string;
+  regidencyName: string;
+}

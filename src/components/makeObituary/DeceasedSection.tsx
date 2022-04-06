@@ -1,19 +1,17 @@
+import { memo } from "react";
 import styled from "styled-components";
 import { MakeObituaryInterface } from "../../types/MakeObituary";
 
 interface DeceasedSectionProps {
   deceaseInfo: MakeObituaryInterface;
-  setDeceaseInfo: React.Dispatch<React.SetStateAction<MakeObituaryInterface>>;
+  handleChangeDeceaseInfo: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function DeceasedSection({
+export function DeceasedSection({
   deceaseInfo,
-  setDeceaseInfo,
+  handleChangeDeceaseInfo,
 }: DeceasedSectionProps) {
-  const handleChangeDeceaseInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.name);
-  };
-
+  console.log("고인 입력 섹션");
   return (
     <DeceasedArticle>
       <h3>고인 정보</h3>
@@ -54,9 +52,9 @@ export default function DeceasedSection({
           type="radio"
           name="gender-select"
           id="gender-man"
-          onClick={() =>
-            setDeceaseInfo({ ...deceaseInfo, deceasedGender: "man" })
-          }
+          // onClick={() =>
+          //   setDeceaseInfo({ ...deceaseInfo, deceasedGender: "man" })
+          // }
         />
         <GenderLabel
           htmlFor="gender-women"
@@ -71,14 +69,16 @@ export default function DeceasedSection({
           type="radio"
           name="gender-select"
           id="gender-women"
-          onClick={() =>
-            setDeceaseInfo({ ...deceaseInfo, deceasedGender: "women" })
-          }
+          // onClick={() =>
+          //   setDeceaseInfo({ ...deceaseInfo, deceasedGender: "women" })
+          // }
         />
       </IptWrapper>
     </DeceasedArticle>
   );
 }
+
+export const MemoizedDeceasedSection = memo(DeceasedSection);
 
 const DeceasedArticle = styled.article`
   padding: 1rem;

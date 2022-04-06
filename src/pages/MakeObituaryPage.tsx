@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import Template from "../components/common/Template";
-import DeceasedSection from "../components/makeObituary/DeceasedSection";
-import ResidencySection from "../components/makeObituary/ResidencySection";
-import { MakeObituaryInterface } from "../types/MakeObituary";
+import { MemoizedDeceasedSection } from "../components/makeObituary/DeceasedSection";
+import { MemoizedResidencySection } from "../components/makeObituary/ResidencySection";
+import {
+  MakeObituaryInterface,
+  ResidencyInterface,
+} from "../types/MakeObituary";
 
 export default function MakeObituaryPage() {
   const [deceaseInfo, setDeceaseInfo] = useState<MakeObituaryInterface>({
@@ -11,11 +14,31 @@ export default function MakeObituaryPage() {
     deceasedAge: "",
     deceasedGender: "",
   });
-  const [residencyInfo, setResidencyInfo] = useState("");
+  const [residencyList, setResidencyList] = useState<ResidencyInterface[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleChangeDeceaseInfo = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setDeceaseInfo({
+        ...deceaseInfo,
+        [e.target.name]: e.target.value,
+      });
+    },
+    [deceaseInfo]
+  );
+
+  const handleAddRegidency = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setResidencyList([
+        ...residencyList,
+        { regidencyType: e.target.value, regidencyName: "" },
+      ]);
+    },
+    [residencyList]
+  );
 
   return (
     <Template>
@@ -23,14 +46,17 @@ export default function MakeObituaryPage() {
 
       <MakeObituaryContainer>
         <IptSection>
-          <DeceasedSection
+          <MemoizedDeceasedSection
             deceaseInfo={deceaseInfo}
-            setDeceaseInfo={setDeceaseInfo}
+            handleChangeDeceaseInfo={handleChangeDeceaseInfo}
           />
         </IptSection>
 
         <IptSection>
-          <ResidencySection />
+          <MemoizedResidencySection
+            residencyList={residencyList}
+            handleAddRegidency={handleAddRegidency}
+          />
         </IptSection>
       </MakeObituaryContainer>
     </Template>
@@ -54,7 +80,7 @@ const IptSection = styled.section`
   background-color: #fff;
   border-radius: 0.3rem;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
-  width: 75vw;
+  width: 500px;
   margin: 1rem auto;
 
   & input[type="radio"] {
