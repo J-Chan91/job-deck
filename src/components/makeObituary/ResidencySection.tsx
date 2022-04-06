@@ -3,8 +3,7 @@ import ArticleTitle from "../common/ArticleTitle";
 import { IoMdClose } from "react-icons/io";
 
 import downArrow from "../../styles/images/down-arrow.png";
-import upArrow from "../../styles/images/up-arrow.png";
-import { memo, useState } from "react";
+import { memo, useCallback } from "react";
 import { ResidencyInterface } from "../../types/MakeObituary";
 
 const deceasedRelationshipList = [
@@ -23,16 +22,36 @@ const deceasedRelationshipList = [
 
 interface ResidencySectionInterface {
   residencyList: ResidencyInterface[];
-  handleAddRegidency: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  setResidencyList: React.Dispatch<React.SetStateAction<ResidencyInterface[]>>;
+  // handleAddRegidency: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export function ResidencySection({
   residencyList,
-  handleAddRegidency,
-}: ResidencySectionInterface) {
-  console.log("상주 입력 섹션");
+  setResidencyList,
+}: // handleAddRegidency,
+ResidencySectionInterface) {
+  const handleChangeRegidencyName = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    targetIdx: number
+  ) => {
+    const newResidencyList = residencyList.slice();
 
-  const handleDeleteRegidency = () => {};
+    newResidencyList[targetIdx].regidencyName = e.target.value;
+
+    setResidencyList(newResidencyList);
+  };
+
+  const handleAddRegidency = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setResidencyList([
+      ...residencyList,
+      { regidencyType: e.target.value, regidencyName: "" },
+    ]);
+  };
+
+  const handleDeleteRegidency = (targetIdx: number) => {
+    setResidencyList(residencyList.filter((item, idx) => idx !== targetIdx));
+  };
 
   return (
     <ResidencyArticle>
@@ -45,7 +64,7 @@ export function ResidencySection({
       >
         <option hidden>상주 추가</option>
 
-        {deceasedRelationshipList.map((item) => (
+        {deceasedRelationshipList.map((item: string) => (
           <option key={item} value={item}>
             {item}
           </option>
@@ -53,15 +72,24 @@ export function ResidencySection({
       </ResidencySelectBox>
 
       <ResidencyListWrapper>
-        {residencyList.map(({ regidencyType, regidencyName }, idx) => (
-          <ResidencyInfoWrapper key={idx}>
-            <span>{regidencyType}</span>
-            <input type="text" value={regidencyName} readOnly />
-            <button>
-              <IoMdClose onClick={handleDeleteRegidency} />
-            </button>
-          </ResidencyInfoWrapper>
-        ))}
+        {residencyList.map(
+          (
+            { regidencyType, regidencyName }: ResidencyInterface,
+            idx: number
+          ) => (
+            <ResidencyInfoWrapper key={idx}>
+              <span>{regidencyType}</span>
+              <input
+                type="text"
+                value={regidencyName}
+                onChange={(e) => handleChangeRegidencyName(e, idx)}
+              />
+              <button>
+                <IoMdClose onClick={() => handleDeleteRegidency(idx)} />
+              </button>
+            </ResidencyInfoWrapper>
+          )
+        )}
       </ResidencyListWrapper>
     </ResidencyArticle>
   );

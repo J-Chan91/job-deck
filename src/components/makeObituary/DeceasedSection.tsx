@@ -4,20 +4,26 @@ import { MakeObituaryInterface } from "../../types/MakeObituary";
 
 interface DeceasedSectionProps {
   deceaseInfo: MakeObituaryInterface;
-  handleChangeDeceaseInfo: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setDeceaseInfo: React.Dispatch<React.SetStateAction<MakeObituaryInterface>>;
 }
 
 export function DeceasedSection({
   deceaseInfo,
-  handleChangeDeceaseInfo,
+  setDeceaseInfo,
 }: DeceasedSectionProps) {
-  console.log("고인 입력 섹션");
+  const handleChangeDeceaseInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDeceaseInfo({
+      ...deceaseInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <DeceasedArticle>
       <h3>고인 정보</h3>
 
       <IptWrapper>
-        <div>성함</div>
+        <span>성함</span>
         <input
           id="deceased-name"
           name="deceasedName"
@@ -52,9 +58,9 @@ export function DeceasedSection({
           type="radio"
           name="gender-select"
           id="gender-man"
-          // onClick={() =>
-          //   setDeceaseInfo({ ...deceaseInfo, deceasedGender: "man" })
-          // }
+          onClick={() =>
+            setDeceaseInfo({ ...deceaseInfo, deceasedGender: "man" })
+          }
         />
         <GenderLabel
           htmlFor="gender-women"
@@ -69,9 +75,9 @@ export function DeceasedSection({
           type="radio"
           name="gender-select"
           id="gender-women"
-          // onClick={() =>
-          //   setDeceaseInfo({ ...deceaseInfo, deceasedGender: "women" })
-          // }
+          onClick={() =>
+            setDeceaseInfo({ ...deceaseInfo, deceasedGender: "women" })
+          }
         />
       </IptWrapper>
     </DeceasedArticle>

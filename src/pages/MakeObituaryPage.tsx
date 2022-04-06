@@ -20,26 +20,6 @@ export default function MakeObituaryPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleChangeDeceaseInfo = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setDeceaseInfo({
-        ...deceaseInfo,
-        [e.target.name]: e.target.value,
-      });
-    },
-    [deceaseInfo]
-  );
-
-  const handleAddRegidency = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setResidencyList([
-        ...residencyList,
-        { regidencyType: e.target.value, regidencyName: "" },
-      ]);
-    },
-    [residencyList]
-  );
-
   return (
     <Template>
       <PageTitle>부고장 작성</PageTitle>
@@ -48,14 +28,14 @@ export default function MakeObituaryPage() {
         <IptSection>
           <MemoizedDeceasedSection
             deceaseInfo={deceaseInfo}
-            handleChangeDeceaseInfo={handleChangeDeceaseInfo}
+            setDeceaseInfo={setDeceaseInfo}
           />
         </IptSection>
 
         <IptSection>
           <MemoizedResidencySection
             residencyList={residencyList}
-            handleAddRegidency={handleAddRegidency}
+            setResidencyList={setResidencyList}
           />
         </IptSection>
       </MakeObituaryContainer>
@@ -73,7 +53,8 @@ const PageTitle = styled.h1`
 const MakeObituaryContainer = styled.main`
   background-color: #fff;
   height: 100vh;
-  padding: 1rem;
+  // padding: 1rem;
+  margin: 0 auto;
 `;
 
 const IptSection = styled.section`
