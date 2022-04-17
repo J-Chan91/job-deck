@@ -5,23 +5,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import styled from "styled-components";
 
 export default function NaviBar() {
-  const location = useLocation();
   const navigate = useNavigate();
-
-  const [gnbList, setGnbList] = useState([
-    { urlTitle: "TEST 2", address: "/" },
-    { urlTitle: "로그인", address: "/signin" },
-  ]);
-  const [currentURL, setCurrentURL] = useState("");
 
   const handleMovePage = (url: string) => {
     navigate(url);
   };
-
-  useEffect(() => {
-    const curUrl = location.pathname.split("/");
-    setCurrentURL(curUrl[curUrl.length - 1]);
-  }, []);
 
   return (
     <NavContainer>
@@ -32,22 +20,6 @@ export default function NaviBar() {
         </LogoTitle>
 
         <CheeringPhrase>파이틩! :) 👍</CheeringPhrase>
-
-        <GNBListBox>
-          {gnbList.map((item) => (
-            <li
-              style={
-                item.address === `/${currentURL}`
-                  ? { fontWeight: 900 }
-                  : { fontWeight: 300 }
-              }
-              key={item.urlTitle}
-              onClick={() => handleMovePage(item.address)}
-            >
-              {item.urlTitle}
-            </li>
-          ))}
-        </GNBListBox>
 
         <MobileHamburger>
           <GiHamburgerMenu size={30} />
