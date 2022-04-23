@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ImStack } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import styled from "styled-components";
@@ -7,7 +6,7 @@ import styled from "styled-components";
 export default function NaviBar() {
   const navigate = useNavigate();
 
-  const handleMovePage = (url: string) => {
+  const handleMovePage = (url: string): void => {
     navigate(url);
   };
 
@@ -61,27 +60,6 @@ const LogoTitle = styled.span`
 const CheeringPhrase = styled.div`
   font-size: 2rem;
   text-align: center;
-`;
-
-const GNBListBox = styled.ul`
-  // border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  & li {
-    display: inline-block;
-    cursor: pointer;
-    margin: 0 1rem;
-  }
-
-  & li:hover {
-    font-weight: bold;
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const MobileHamburger = styled.div`
