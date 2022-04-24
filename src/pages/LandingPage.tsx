@@ -82,13 +82,13 @@ const TestItem = styled.section`
   cursor: pointer;
 
   @media (max-width: 1444px) {
-    background-color: skyblue;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     width: 350px;
     height: 250px;
   }
 
   @media (max-width: 1348px) {
-    background-color: green;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     min-width: 350px;
     height: 250px;
