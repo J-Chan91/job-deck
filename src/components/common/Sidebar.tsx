@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BsSearch } from "react-icons/bs";
+import { MdClose } from "react-icons/md";
+
 import DeveloperBox from "./DeveloperBox";
 
 export default function Sidebar() {
@@ -8,6 +11,7 @@ export default function Sidebar() {
   const navigate = useNavigate();
 
   const [isPrintSearchBox, setIsPrintSearchBox] = useState<boolean>(true);
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
 
   useEffect(() => {
     if (location.pathname === "/add") {
@@ -25,13 +29,26 @@ export default function Sidebar() {
             스크랩 추가
           </AddScrapBtn>
 
-          <SearchBox />
+          <SearchWrapper>
+            <BsSearch size="20" />
+
+            <SearchBox
+              value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
+            />
+
+            {!searchKeyword ? null : (
+              <div>
+                <MdClose size="20" />
+              </div>
+            )}
+          </SearchWrapper>
 
           <GNBContainer>
             <article>📑 전체</article>
             <article>🛫 진행중</article>
             <article>😆 합격</article>
-            <article>😥 탈락</article>
+            <article>😥 불합격</article>
           </GNBContainer>
 
           <DeveloperBox />
@@ -44,6 +61,7 @@ export default function Sidebar() {
 const SidebarContainer = styled.aside`
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
   position: sticky;
+  top: 5rem;
   width: 15rem;
   height: 75vh;
   border-radius: 1rem;
@@ -62,7 +80,7 @@ const AuthBox = styled.div`
   padding: 1.3rem;
   margin: 0.3rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.7rem;
   cursor: pointer;
   border-radius: 1rem;
 
@@ -74,7 +92,7 @@ const AuthBox = styled.div`
 const AddScrapBtn = styled.button`
   background-color: #f5d042;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.7rem;
   padding: 1rem;
   margin: 0.3rem;
   border-radius: 1rem;
@@ -86,15 +104,42 @@ const AddScrapBtn = styled.button`
   }
 `;
 
+const SearchWrapper = styled.div`
+  // width: 95%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  position: relative;
+
+  & > svg {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    cursor: pointer;
+  }
+
+  & > div {
+    position: absolute;
+    top: 0.4rem;
+    left: 12.5rem;
+    cursor: pointer;
+  }
+`;
+
 const SearchBox = styled.input.attrs({
   type: "text",
   placeholder: "검색",
 })`
-  margin: 1rem 0.5rem;
-  font-size: 1.7rem;
+  width: 10rem;
+  padding: 5px 35px;
+  font-size: 1.3rem;
   outline: none;
-  border: 1px solid #2bae66;
-  border-radius: 0.3rem;
+  border: none;
+  border-bottom: 1px solid #000;
+
+  &:focus {
+    border-bottom: 1px solid #2bae66;
+    outline: none;
+  }
 `;
 
 const GNBContainer = styled.div`

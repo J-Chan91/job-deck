@@ -18,7 +18,7 @@ export default function NaviBar() {
           JOB Deck
         </LogoTitle>
 
-        <CheeringPhrase>파이틩! :) 👍</CheeringPhrase>
+        <CheeringPhrase>오늘도 파이팅! 👍</CheeringPhrase>
 
         <MobileHamburger>
           <GiHamburgerMenu size={30} />
@@ -46,7 +46,6 @@ const NavContainer = styled.nav`
 
 const LogoTitle = styled.span`
   font-size: 2rem;
-  font-family: consolas;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -59,7 +58,16 @@ const LogoTitle = styled.span`
 
 const CheeringPhrase = styled.div`
   font-size: 2rem;
-  text-align: center;
+  margin-right: 5.5rem;
+
+  @media (max-width: 1444px) {
+    font-size: 1.5rem;
+    margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const MobileHamburger = styled.div`
