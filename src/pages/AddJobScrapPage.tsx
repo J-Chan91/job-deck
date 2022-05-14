@@ -1,31 +1,78 @@
+import { useState } from "react";
 import styled from "styled-components";
-import IptJobSearchURL from "../components/addJobScrap/IptJobSearchURL";
+
+import { ScrapInterface } from "../types/AddJobScrap";
+
+import IptCompany from "../components/addJobScrap/IptCompany";
+import IptJobSearchPlatform from "../components/addJobScrap/IptJobSearchPlatform";
+import IptPosition from "../components/addJobScrap/IptPosition";
+import IptPreferential from "../components/addJobScrap/IptPreferential";
+import IptRequirements from "../components/addJobScrap/IptRequirements";
+import IptURL from "../components/addJobScrap/IptURL";
 import Template from "../components/common/Template";
+import IptNote from "../components/addJobScrap/IptNote";
+import IptProcess from "../components/addJobScrap/IptProcess";
 
 export default function AddJobScrapPage() {
+  const [scrap, setScrap] = useState<ScrapInterface>({
+    selectJobSearchPlatform: "",
+    selectPosition: "",
+    selectProcess: "",
+    detailUrl: "",
+    company: "",
+    requirements: "",
+    preferential: "",
+    note: "",
+  });
+
   return (
     <Template>
       <AddJobScrapPageContainer>
         <AddJobScrapPageInner>
           <TitleBox>
             <h1>스크랩 등록</h1>
-
-            <button>스크랩하기</button>
+            <button>저장하기</button>
           </TitleBox>
 
-          {/* 지원한 사이트 */}
-          <IptJobSearchURL />
-          <label htmlFor="url-ipt">URL</label>
-          <input id="url-ipt" type="text" />
-          <label>포지션명</label>
-          <input id="url-ipt" />
-          <label>회사명</label>
-          <label>자격요건</label>
-          <label>주요업무</label>
-          <label>우대사항</label>
-          <label>회사위치</label>
-          <textarea></textarea>
-          <label>구직상태</label>
+          {/* 지원한 사이트 플랫폼 */}
+          <ArticleWrapper>
+            <IptJobSearchPlatform scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
+
+          {/* 지원 현황 */}
+          <ArticleWrapper>
+            <IptProcess scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
+
+          {/* 상세 정보 URL */}
+          <ArticleWrapper>
+            <IptURL scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
+
+          {/* 회사명 */}
+          <ArticleWrapper>
+            <IptCompany scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
+
+          {/* 포지션 */}
+          <ArticleWrapper>
+            <IptPosition scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
+
+          {/* 지원 자격 */}
+          <ArticleWrapper>
+            <IptRequirements scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
+
+          {/* 우대 사항 */}
+          <ArticleWrapper>
+            <IptPreferential scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
+
+          {/* 메모 */}
+          <ArticleWrapper>
+            <IptNote scrap={scrap} setScrap={setScrap} />
+          </ArticleWrapper>
         </AddJobScrapPageInner>
       </AddJobScrapPageContainer>
     </Template>
@@ -37,10 +84,10 @@ const AddJobScrapPageContainer = styled.div`
 `;
 
 const AddJobScrapPageInner = styled.main`
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
   background-color: #fff;
   width: 50vw;
-  height: 90vh;
   padding: 1rem;
 `;
 
@@ -64,17 +111,6 @@ const TitleBox = styled.div`
   }
 `;
 
-const SiteWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const SiteItem = styled.div`
-  font-family: monospace;
-  width: 5rem;
-  padding: 0.2rem;
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  margin: 0.2rem;
+const ArticleWrapper = styled.div`
+  margin-bottom: 2rem;
 `;
