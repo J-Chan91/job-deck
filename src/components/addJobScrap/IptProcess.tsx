@@ -10,7 +10,7 @@ interface IptProcessProps {
 }
 
 export default function IptProcess({ scrap, setScrap }: IptProcessProps) {
-  const [positionList, setPositionList] = useState<CheckboxListInterface[]>([
+  const [processList, setProcessList] = useState<CheckboxListInterface[]>([
     {
       title: "📬 지원",
       backColor: "#fff",
@@ -53,7 +53,7 @@ export default function IptProcess({ scrap, setScrap }: IptProcessProps) {
         isRequired={true}
         iptTitle="지원 현황"
         selectedItem={scrap.selectPosition}
-        checkboxList={positionList}
+        checkboxList={processList}
         handleSelectItem={handleSelectItem}
       />
     </>

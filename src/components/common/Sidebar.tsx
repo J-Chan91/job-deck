@@ -10,6 +10,7 @@ export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [isSignin, setIsSignin] = useState<boolean>(false);
   const [isPrintSearchBox, setIsPrintSearchBox] = useState<boolean>(true);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
 
@@ -23,26 +24,29 @@ export default function Sidebar() {
     <>
       {isPrintSearchBox && (
         <SidebarContainer>
-          <AuthBox>로그인</AuthBox>
+          {isSignin ? (
+            <>
+              <AddScrapBtn onClick={() => navigate("/add")}>
+                스크랩 추가
+              </AddScrapBtn>
+              <SearchWrapper>
+                <BsSearch size="20" />
 
-          <AddScrapBtn onClick={() => navigate("/add")}>
-            스크랩 추가
-          </AddScrapBtn>
+                <SearchBox
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
+                />
 
-          <SearchWrapper>
-            <BsSearch size="20" />
-
-            <SearchBox
-              value={searchKeyword}
-              onChange={(e) => setSearchKeyword(e.target.value)}
-            />
-
-            {!searchKeyword ? null : (
-              <div>
-                <MdClose size="20" />
-              </div>
-            )}
-          </SearchWrapper>
+                {!searchKeyword ? null : (
+                  <div>
+                    <MdClose size="20" />
+                  </div>
+                )}
+              </SearchWrapper>
+            </>
+          ) : (
+            <AuthBox>로그인</AuthBox>
+          )}
 
           <GNBContainer>
             <article>📑 전체</article>

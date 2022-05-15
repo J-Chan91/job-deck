@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Card from "../components/common/Card";
 import Template from "../components/common/Template";
 import AddJobScrapPage from "./AddJobScrapPage";
 
@@ -16,18 +17,10 @@ export default function LandingPage() {
         ) : (
           <>
             {dummyList.map((item, idx) => (
-              <TestItem key={idx}>
-                {item}: {idx}
-              </TestItem>
+              <Card key={idx} />
             ))}
           </>
         )}
-
-        {dummyList.map((item, idx) => (
-          <TestItem key={idx}>
-            {item}: {idx}
-          </TestItem>
-        ))}
       </Container>
     </Template>
   );
